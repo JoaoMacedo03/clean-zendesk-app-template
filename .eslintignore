@@ -1,0 +1,9 @@
+node_modules
+.vscode/
+coverage
+public/
+*.scss
+cypress.config.ts
+cy-ts-preprocessor.ts
+*.json
+dist/
