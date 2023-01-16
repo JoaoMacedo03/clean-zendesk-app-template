@@ -1,7 +1,7 @@
 import faker from 'faker'
 import { GitHubUserModel } from '@/domain/models'
 import { GetGithubUserData } from '@/data/use-cases/get-github-user-data'
-import { HttpClientSpy } from '@/tests/data/test'
+import { HttpClientSpy } from '@/tests/data/mocks'
 import { HttpStatusCode } from '@/data/contracts/http'
 import { GithubUserError } from '@/domain/errors'
 
