@@ -1,5 +1,5 @@
 import { HttpStatusCode, IHttpClient } from '@/data/contracts/http'
-import { UnexpectedError } from '@/domain/errors'
+import { GithubUserError } from '@/domain/errors'
 import { GitHubUserModel } from '@/domain/models'
 import { IGetGithubUserData } from '@/domain/use-cases'
 
@@ -17,7 +17,7 @@ export class GetGithubUserData implements IGetGithubUserData {
 
         switch (httpResponse.statusCode) {
             case HttpStatusCode.success: return httpResponse.body
-            default: throw new UnexpectedError()
+            default: throw new GithubUserError()
         }
     }
 }
