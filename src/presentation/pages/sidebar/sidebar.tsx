@@ -1,11 +1,17 @@
 import React from 'react'
 import { Button, TextField } from '@mui/material'
 import Styles from './sidebar-styles.scss'
+import { IGetGithubUser } from '@/domain/use-cases'
 
-const Sidebar: React.FC = () => {
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+type Props = {
+    getGithubUser: IGetGithubUser
+}
+
+const Sidebar: React.FC = ({ getGithubUser }: Props) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault()
-        console.log('Test Submit')
+        const githubUser = await getGithubUser.get('JoaoMacedo03')
+        console.log('githubUser -> ', githubUser)
     }
 
     return (
