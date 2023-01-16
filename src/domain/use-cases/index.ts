@@ -1,1 +1,1 @@
-export * from './IGet-github-user-data'
+export * from './IGet-github-user'

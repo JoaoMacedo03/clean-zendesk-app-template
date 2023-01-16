@@ -1,9 +1,9 @@
 import { HttpStatusCode, IHttpClient } from '@/data/contracts/http'
 import { GithubUserError } from '@/domain/errors'
 import { GitHubUserModel } from '@/domain/models'
-import { IGetGithubUserData } from '@/domain/use-cases'
+import { IGetGithubUser } from '@/domain/use-cases'
 
-export class GetGithubUserData implements IGetGithubUserData {
+export class GetGithubUserData implements IGetGithubUser {
     constructor (
         private readonly url: string,
         private readonly httpClient: IHttpClient<GitHubUserModel>
