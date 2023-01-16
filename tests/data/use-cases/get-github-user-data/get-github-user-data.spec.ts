@@ -4,6 +4,7 @@ import { GetGithubUserData } from '@/data/use-cases/get-github-user-data'
 import { HttpClientSpy } from '@/tests/data/mocks'
 import { HttpStatusCode } from '@/data/contracts/http'
 import { GithubUserError } from '@/domain/errors'
+import { mockGithubUser } from '@/tests/domain/mocks'
 
 type GithubUserDataTypes = {
     githubUserData: GetGithubUserData
@@ -38,5 +39,16 @@ describe('GetGithubUserData', () => {
         }
         const promise = githubUserData.get(githubUser)
         await expect(promise).rejects.toThrow(new GithubUserError())
+    })
+
+    test('Should return an GithubUserModel if HttpClient succeeds', async () => {
+        const { githubUserData, httpClientSpy, githubUser } = makeGithubUserData()
+        const httpResponse = mockGithubUser()
+        httpClientSpy.response = {
+            statusCode: HttpStatusCode.success,
+            body: httpResponse
+        }
+        const githubUserResult = await githubUserData.get(githubUser)
+        expect(githubUserResult).toEqual(httpResponse)
     })
 })
