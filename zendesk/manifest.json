@@ -7,8 +7,8 @@
     },
     "location": {
       "support": {
-        "new_ticket_sidebar": "http://localhost:8080/login",
-        "ticket_sidebar": "http://localhost:8080/login",
+        "new_ticket_sidebar": "http://localhost:8080/sidebar",
+        "ticket_sidebar": "http://localhost:8080/sidebar",
         "nav_bar": "http://localhost:8080/navbar"
       }
     },

@@ -9,8 +9,8 @@ export default defineConfig({
     experimentalRunAllSpecs: true,
     baseUrl: 'http://localhost:8080',
     fixturesFolder: false,
-    supportFile: 'src/main/test/cypress/support/e2e.{js,jsx,ts,tsx}',
-    specPattern: 'src/main/test/cypress/e2e/**/*.spec.{ts,tsx}'
+    supportFile: 'tests/main/test/cypress/support/e2e.{js,jsx,ts,tsx}',
+    specPattern: 'tests/main/test/cypress/e2e/**/*.spec.{ts,tsx}'
   },
 
   component: {
