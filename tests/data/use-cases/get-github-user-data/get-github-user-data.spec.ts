@@ -1,20 +1,20 @@
 import faker from 'faker'
 import { GitHubUserModel } from '@/domain/models'
-import { GetGithubUserData } from '@/data/use-cases/get-github-user-data'
+import { GetGithubUser } from '@/data/use-cases'
 import { HttpClientSpy } from '@/tests/data/mocks'
 import { HttpStatusCode } from '@/data/contracts/http'
 import { GithubUserError } from '@/domain/errors'
 import { mockGithubUser } from '@/tests/domain/mocks'
 
 type GithubUserDataTypes = {
-    githubUserData: GetGithubUserData
+    githubUserData: GetGithubUser
     githubUser: string
     httpClientSpy: HttpClientSpy<GitHubUserModel>
 }
 
 const makeGithubUserData = (url: string = faker.internet.url()): GithubUserDataTypes => {
     const httpClientSpy = new HttpClientSpy<GitHubUserModel>()
-    const githubUserData = new GetGithubUserData(url, httpClientSpy)
+    const githubUserData = new GetGithubUser(url, httpClientSpy)
     const githubUser = faker.random.word()
     return {
         githubUserData,
@@ -23,7 +23,7 @@ const makeGithubUserData = (url: string = faker.internet.url()): GithubUserDataT
     }
 }
 
-describe('GetGithubUserData', () => {
+describe('GetGithubUser', () => {
     test('Should call HttpClient with correct values', async () => {
         const url = faker.internet.url()
         const { githubUserData, httpClientSpy, githubUser } = makeGithubUserData(url)

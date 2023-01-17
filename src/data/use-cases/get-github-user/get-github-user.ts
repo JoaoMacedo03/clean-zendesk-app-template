@@ -3,7 +3,7 @@ import { GithubUserError } from '@/domain/errors'
 import { GitHubUserModel } from '@/domain/models'
 import { IGetGithubUser } from '@/domain/use-cases'
 
-export class GetGithubUserData implements IGetGithubUser {
+export class GetGithubUser implements IGetGithubUser {
     constructor (
         private readonly url: string,
         private readonly httpClient: IHttpClient<GitHubUserModel>
@@ -14,6 +14,7 @@ export class GetGithubUserData implements IGetGithubUser {
             url: `${this.url}/${githubUser}`,
             method: 'GET'
         })
+        console.log('httpResponse -> ', httpResponse)
 
         switch (httpResponse.statusCode) {
             case HttpStatusCode.success: return httpResponse.body
