@@ -7,7 +7,7 @@ type Props = {
     getGithubUser: IGetGithubUser
 }
 
-const Sidebar: React.FC = ({ getGithubUser }: Props) => {
+const Sidebar: React.FC<Props> = ({ getGithubUser }: Props) => {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault()
         const githubUser = await getGithubUser.get('JoaoMacedo03')
