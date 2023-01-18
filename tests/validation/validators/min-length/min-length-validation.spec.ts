@@ -1,5 +1,5 @@
-import faker, { fake } from 'faker'
-import { InvalidFieldError } from '@/validation/errors'
+import faker from 'faker'
+import { MinLengthFieldError } from '@/validation/errors'
 import { MinLengthValidation } from '@/validation/validators'
 
 const makeSut = (field: string, minLength: number): MinLengthValidation => {
@@ -11,7 +11,7 @@ describe('MinLengthValidation', () => {
     const field = faker.database.column()
     const sut = makeSut(field, 9)
     const error = sut.validate({ [field]: faker.random.alphaNumeric(4) })
-    expect(error).toEqual(new InvalidFieldError())
+    expect(error).toEqual(new MinLengthFieldError(9))
   })
 
   test('Should return false if value is valid', () => {
