@@ -41,11 +41,11 @@ module.exports = merge(common, {
     new DefinePlugin({
       'process.env.API_URL': JSON.stringify('https://fordevs.herokuapp.com/api')
     }),
-    new HtmlWebpackPlugin({
-      template: './template.prod.html'
-    }),
     new MiniCssExtract({
       filename: 'main-bundle-[fullhash].css'
+    }),
+    new HtmlWebpackPlugin({
+      template: './template.prod.html'
     })
   ]
 })

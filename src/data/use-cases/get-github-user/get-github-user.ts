@@ -14,8 +14,6 @@ export class GetGithubUser implements IGetGithubUser {
             url: `${this.url}/${githubUser}`,
             method: 'GET'
         })
-        console.log('httpResponse -> ', httpResponse)
-
         switch (httpResponse.statusCode) {
             case HttpStatusCode.success: return httpResponse.body
             default: throw new GithubUserError()

@@ -7,13 +7,14 @@
     },
     "location": {
       "support": {
-        "new_ticket_sidebar": "http://localhost:8080/sidebar",
-        "ticket_sidebar": "http://localhost:8080/sidebar",
-        "nav_bar": "http://localhost:8080/navbar"
+        "new_ticket_sidebar": "http://localhost:8080?type=sidebar",
+        "ticket_sidebar": "http://localhost:8080?type=sidebar",
+        "nav_bar": "http://localhost:8080?type=navbar"
       }
     },
     "private": true,
-    "version": "1.0",
+    "defaultLocale": "en",
+    "version": "0.1.0",
     "parameters": [
       {
         "name": "language",

@@ -4,9 +4,8 @@
   "description": "A repository to serve as a template for Zendesk applications",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "webpack-dev-server --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
+    "start": "webpack-dev-server --config webpack.dev.js --mode development",
+    "build": "webpack --config webpack.prod.js --mode production && sh ./scripts/genBuildPackage.sh",
     "test": "cross-env NODE_ICU_DATA=node_modules/full-icu jest --passWithNoTests --no-cache --runInBand",
     "test:watch": "npm test -- --watch",
     "test:staged": "npm test -- --findRelatedTests src/",
