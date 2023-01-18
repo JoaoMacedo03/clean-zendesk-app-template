@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Button, TextField } from '@mui/material'
-import { IGetGithubUser } from '@/domain/use-cases'
+import { IGetGithubUser, IGetGithubUserRepos } from '@/domain/use-cases'
 import Styles from './sidebar-styles.scss'
 import { IValidation } from '@/presentation/contracts/validation'
+import { ErrorMessage } from '@/presentation/components'
 
 type Props = {
     getGithubUser: IGetGithubUser
+    getGithubUserRepos: IGetGithubUserRepos
     validation: IValidation
 }
 
-const Sidebar: React.FC<Props> = ({ getGithubUser, validation }: Props) => {
+const Sidebar: React.FC<Props> = ({ getGithubUser, getGithubUserRepos, validation }: Props) => {
     const [state, setState] = useState({
         githubUser: '',
         error: ''
@@ -31,7 +33,9 @@ const Sidebar: React.FC<Props> = ({ getGithubUser, validation }: Props) => {
         if (!validate()) return
         try {
             const githubUser = await getGithubUser.get(state.githubUser)
+            const repos = await getGithubUserRepos.get(githubUser.repos_url)
             console.log('githubUser -> ', githubUser)
+            console.log('repos -> ', repos)
         } catch (error) {
             setState(current => ({
                 ...current,
@@ -53,7 +57,7 @@ const Sidebar: React.FC<Props> = ({ getGithubUser, validation }: Props) => {
                 fullWidth
                 onChange={handleChange}
             />
-            {state.error && <div>{state.error}</div>}
+            {state.error && <ErrorMessage error={state.error} />}
             <Button type="submit" variant="contained">Buscar</Button>
         </form>
     )
