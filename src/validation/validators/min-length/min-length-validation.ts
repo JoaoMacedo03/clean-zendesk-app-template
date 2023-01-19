@@ -1,5 +1,4 @@
 import { IFieldValidation } from '@/validation/contracts/field-validation'
-import { InvalidFieldError } from '@/validation/errors'
 import { MinLengthFieldError } from '@/validation/errors/min-length-error'
 
 export class MinLengthValidation implements IFieldValidation {

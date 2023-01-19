@@ -4,11 +4,11 @@ import { makeGetGithubUser, makeGetGithubUserRepos } from '@/main/factories/use-
 import { makeSidebarValidation } from './sidebar-validation'
 
 export const MakeSidebar: React.FC = () => {
-    return (
-      <Sidebar
-        getGithubUser={makeGetGithubUser()}
-        getGithubUserRepos={makeGetGithubUserRepos()}
-        validation={makeSidebarValidation()}
-      />
-    )
-  }
+  return (
+    <Sidebar
+      getGithubUser={makeGetGithubUser()}
+      getGithubUserRepos={makeGetGithubUserRepos()}
+      validation={makeSidebarValidation()}
+    />
+  )
+}

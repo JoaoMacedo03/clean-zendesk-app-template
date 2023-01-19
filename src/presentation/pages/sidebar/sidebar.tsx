@@ -45,7 +45,9 @@ const Sidebar: React.FC<Props> = ({ getGithubUser, getGithubUserRepos, validatio
     }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        setState(current => ({ ...current, githubUser: event.target.value, error: '' }))
+        setState(current => ({
+            ...current, githubUser: event.target.value, error: ''
+        }))
     }
 
     return (
