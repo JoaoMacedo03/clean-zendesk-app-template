@@ -1,0 +1,14 @@
+@import '../../../../styles/colors.scss';
+
+.githubUserDataWrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+        width: 10rem;
+        border-radius: 50%;
+        border: 2px solid $disabledBackground;
+    }
+}

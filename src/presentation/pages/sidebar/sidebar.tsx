@@ -4,6 +4,7 @@ import { IGetGithubUser, IGetGithubUserRepos } from '@/domain/use-cases'
 import { IValidation } from '@/presentation/contracts/validation'
 import { ErrorMessage } from '@/presentation/components'
 import { GithubUserData } from './components'
+import { SidebarState } from './types/sidebar-state-types'
 import Styles from './sidebar-styles.scss'
 
 type Props = {
@@ -13,13 +14,14 @@ type Props = {
 }
 
 const Sidebar: React.FC<Props> = ({ getGithubUser, getGithubUserRepos, validation }: Props) => {
-    const [state, setState] = useState({
+    const [loading, setLoading] = useState(false)
+    const [state, setState] = useState<SidebarState>({
         githubUser: '',
         error: '',
-        userFound: false
+        userFound: false,
+        githubUserData: null
     })
-    const [loading, setLoading] = useState(false)
-
+    
     const validate = (): boolean => {
         setState(current => ({ ...current, error: '' }))
         const formData = { githubuser: state.githubUser }
@@ -36,12 +38,16 @@ const Sidebar: React.FC<Props> = ({ getGithubUser, getGithubUserRepos, validatio
         if (!validate()) return
         setLoading(true)
         try {
-            const githubUser = await getGithubUser.get(state.githubUser)
-            const repos = await getGithubUserRepos.get(githubUser.repos_url)
-            setState(current => ({ ...current, userFound: true }))
+            const user = await getGithubUser.get(state.githubUser)
+            const repositories = await getGithubUserRepos.get(user.repos_url)
+            setState(current => 
+                ({ 
+                    ...current, 
+                    userFound: true, 
+                    githubUserData: { user, repositories } 
+                })
+            )
             setLoading(false)
-            console.log('githubUser -> ', githubUser)
-            console.log('repos -> ', repos)
         } catch (error) {
             setState(current => ({
                 ...current,
@@ -57,7 +63,7 @@ const Sidebar: React.FC<Props> = ({ getGithubUser, getGithubUserRepos, validatio
         }))
     }
 
-    if(state.userFound) return <GithubUserData />
+    if(state.userFound) return <GithubUserData sidebarState={state} />
 
     return (
         <form onSubmit={handleSubmit} className={Styles.sidebarWrap}>
