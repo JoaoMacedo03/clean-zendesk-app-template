@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import ZAFClient from 'zendesk_app_framework_sdk'
 import { Button, CircularProgress, TextField } from '@mui/material'
 import { IGetGithubUser, IGetGithubUserRepos } from '@/domain/use-cases'
 import { IValidation } from '@/presentation/contracts/validation'
@@ -12,6 +13,8 @@ type Props = {
     getGithubUserRepos: IGetGithubUserRepos
     validation: IValidation
 }
+
+const client = ZAFClient.init()
 
 const Sidebar: React.FC<Props> = ({ getGithubUser, getGithubUserRepos, validation }: Props) => {
     const [loading, setLoading] = useState(false)
@@ -33,7 +36,10 @@ const Sidebar: React.FC<Props> = ({ getGithubUser, getGithubUserRepos, validatio
         return true
     }
 
-    const goBack = (): void => setState(current => ({ ...current, userFound: false }))
+    const goBack = (): void => {
+        setState(current => ({ ...current, userFound: false }))
+        client.invoke('resize', { width: '100%', height: 170 })
+    } 
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault()
@@ -64,6 +70,10 @@ const Sidebar: React.FC<Props> = ({ getGithubUser, getGithubUserRepos, validatio
             ...current, githubUser: event.target.value, error: ''
         }))
     }
+
+    useEffect(() => {
+        client.invoke('resize', { width: '100%', height: 170 })
+    }, [])
 
     if(state.userFound) return <GithubUserData goBack={goBack} sidebarState={state} />
 

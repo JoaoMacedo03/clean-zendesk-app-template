@@ -1,6 +1,8 @@
 @import '../../styles/colors.scss';
 
 .sidebarWrap {
+    padding: 7px 0px;
+    overflow-y: hidden;
     width: 100%;
     min-height: 100vh;
     display: flex;
