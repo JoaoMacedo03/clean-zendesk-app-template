@@ -53,6 +53,8 @@ const GithubUserData: React.FC<Props> = ({ sidebarState }: Props) => {
                 </span>
             </div>
 
+            <div className={Styles.divider}/>
+
             <div>
                 {githubUserData.repositories.map(repository => (
                     <div key={repository.name}>{repository.name}</div>
