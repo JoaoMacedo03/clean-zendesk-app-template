@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import ZAFClient from 'zendesk_app_framework_sdk'
-import { GroupAdd, Group, Badge } from '@mui/icons-material';
+import { GroupAdd, Group, Badge, LocationCity } from '@mui/icons-material';
 import { SidebarState } from '@/presentation/pages/sidebar/types'
 import Styles from './github-user-data-styles.scss'
 
@@ -45,11 +45,12 @@ const GithubUserData: React.FC<Props> = ({ sidebarState }: Props) => {
                 </span>
             </div>
 
-            <div>
-                <div>
-                    <span>Cidade: </span>
-                    <span>{githubUserData.user.location}</span>
-                </div>
+            <div className={Styles.dataWrap}>
+                <span>
+                    <LocationCity />
+                    Cidade:
+                    <b>{githubUserData.user.location}</b>
+                </span>
             </div>
 
             <div>
