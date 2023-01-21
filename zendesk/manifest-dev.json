@@ -1,25 +1,36 @@
 {
-    "name": "Clean Zendesk Template",
-    "author": {
-      "name": "AktieNow",
-      "email": "suporte@aktienow.com",
-      "url": "https://www.aktienow.com"
+  "name": "Clean Zendesk Template",
+  "author": {
+    "name": "AktieNow",
+    "email": "suporte@aktienow.com",
+    "url": "https://www.aktienow.com"
+  },
+  "location": {
+    "support": {
+      "new_ticket_sidebar": "http://localhost:8080?type=sidebar",
+      "ticket_sidebar": "http://localhost:8080?type=sidebar",
+      "nav_bar": "http://localhost:8080?type=navbar"
+    }
+  },
+  "private": true,
+  "defaultLocale": "en",
+  "version": "0.1.0",
+  "parameters": [
+    {
+      "name": "language",
+      "required": true,
+      "default": "pt"
     },
-    "location": {
-      "support": {
-        "new_ticket_sidebar": "http://localhost:8080/login",
-        "ticket_sidebar": "http://localhost:8080/login",
-        "nav_bar": "http://localhost:8080/navbar"
-      }
+    {
+      "name": "repo_description_id",
+      "required": true,
+      "default": "8146039591699"
     },
-    "private": true,
-    "version": "1.0",
-    "parameters": [
-      {
-        "name": "language",
-        "required": true,
-        "default": "pt"
-      }
-    ],
-    "frameworkVersion": "2.0"
-  }
+    {
+      "name": "repo_language_id",
+      "required": true,
+      "default": "8146034435219"
+    }
+  ],
+  "frameworkVersion": "2.0"
+}

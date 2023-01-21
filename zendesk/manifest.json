@@ -20,6 +20,16 @@
         "name": "language",
         "required": true,
         "default": "pt"
+      },
+      {
+        "name": "repo_description_id",
+        "required": true,
+        "default": "8146039591699"
+      },
+      {
+        "name": "repo_language_id",
+        "required": true,
+        "default": "8146034435219"
       }
     ],
     "frameworkVersion": "2.0"

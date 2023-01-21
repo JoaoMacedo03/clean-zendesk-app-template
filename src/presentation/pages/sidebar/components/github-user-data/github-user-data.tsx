@@ -13,6 +13,21 @@ const client = ZAFClient.init()
 const GithubUserData: React.FC<Props> = ({ sidebarState }: Props) => {
     const { githubUserData: { user, repositories } } = sidebarState
 
+    const handleRepository = (description: string, language: string): void => {
+        client.metadata().then(response => {
+            const { settings } = response
+            client.set(
+                `ticket.customField:custom_field_${settings.repo_description_id}`, 
+                description
+            )
+            client.set(
+                `ticket.customField:custom_field_${settings.repo_language_id}`, 
+                language
+            )
+            client.invoke('notify', 'Dados enviados ao ticket', 'success')
+        })
+    }
+
     useEffect(() => {
         client.invoke('resize', { width: '100%', height: 700 });
     }, [])
@@ -57,7 +72,17 @@ const GithubUserData: React.FC<Props> = ({ sidebarState }: Props) => {
 
             <div className={Styles.reposWraps}>
                 {repositories.map(repository => (
-                    <div key={repository.name}>{repository.name}</div>
+                    <div 
+                        key={repository.name} 
+                        onClick={() => 
+                            handleRepository(
+                                repository.description, 
+                                repository.language
+                            )
+                        }
+                    >
+                        {repository.name}
+                    </div>
                 ))}
             </div>
         </div>
