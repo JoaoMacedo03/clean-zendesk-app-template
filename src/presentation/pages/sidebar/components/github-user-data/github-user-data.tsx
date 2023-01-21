@@ -55,7 +55,7 @@ const GithubUserData: React.FC<Props> = ({ sidebarState }: Props) => {
 
             <div className={Styles.divider}/>
 
-            <div>
+            <div className={Styles.reposWraps}>
                 {githubUserData.repositories.map(repository => (
                     <div key={repository.name}>{repository.name}</div>
                 ))}

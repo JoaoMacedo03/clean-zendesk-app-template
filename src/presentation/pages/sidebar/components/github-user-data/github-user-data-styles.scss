@@ -9,7 +9,7 @@
     img {
         width: 10rem;
         border-radius: 50%;
-        border: 2px solid $disabledBackground;
+        border: 2px solid $gray;
     }
 
     .dataWrap {
@@ -43,7 +43,28 @@
     .divider {
         margin-top: 1rem;
         margin-bottom: 1rem;
-        border: 1px solid $disabledBackground;
+        border: 1px solid $gray;
         width: 80%;
     }
+
+    .reposWraps {
+        justify-content: flex-start;
+        width: 80%;
+
+        div {
+            font-size: 15px;
+            font-weight: bold;
+            border: 2px solid $gray;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            padding: 10px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $gray;
+                transition: 0.5s;
+            }
+        }
+    }
+
 }
