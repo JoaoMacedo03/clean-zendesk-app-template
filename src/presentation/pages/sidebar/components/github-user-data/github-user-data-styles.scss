@@ -38,6 +38,21 @@
             margin-right: .4rem;
             margin-bottom: 3px;
         }
+
+        .goBack {
+            margin-bottom: 1rem;
+            width: 100%;
+            cursor: pointer;
+            font-size: 13px;
+            color: $black;
+            display: flex;
+            justify-content: flex-start;
+
+            &:hover {
+                color: $gray;
+                transition: 0.3s;
+            }
+        }
     }
 
     .divider {

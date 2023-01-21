@@ -33,6 +33,8 @@ const Sidebar: React.FC<Props> = ({ getGithubUser, getGithubUserRepos, validatio
         return true
     }
 
+    const goBack = (): void => setState(current => ({ ...current, userFound: false }))
+
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault()
         if (!validate()) return
@@ -63,7 +65,7 @@ const Sidebar: React.FC<Props> = ({ getGithubUser, getGithubUserRepos, validatio
         }))
     }
 
-    if(state.userFound) return <GithubUserData sidebarState={state} />
+    if(state.userFound) return <GithubUserData goBack={goBack} sidebarState={state} />
 
     return (
         <form onSubmit={handleSubmit} className={Styles.sidebarWrap}>

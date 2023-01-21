@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react'
 import ZAFClient from 'zendesk_app_framework_sdk'
-import { GroupAdd, Group, Badge, LocationCity } from '@mui/icons-material';
+import { GroupAdd, Group, Badge, LocationCity, ArrowBack } from '@mui/icons-material';
 import { SidebarState } from '@/presentation/pages/sidebar/types'
 import Styles from './github-user-data-styles.scss'
 
 type Props = {
     sidebarState: SidebarState
+    goBack: () => void
 }
 
 const client = ZAFClient.init()
 
-const GithubUserData: React.FC<Props> = ({ sidebarState }: Props) => {
+const GithubUserData: React.FC<Props> = ({ sidebarState, goBack }: Props) => {
     const { githubUserData: { user, repositories } } = sidebarState
 
     const handleRepository = (description: string, language: string): void => {
@@ -34,6 +35,13 @@ const GithubUserData: React.FC<Props> = ({ sidebarState }: Props) => {
 
     return (
         <div className={Styles.githubUserDataWrap}>
+            <div className={Styles.dataWrap} onClick={goBack}>
+                <span className={Styles.goBack}>
+                    <ArrowBack />
+                    Voltar
+                </span>
+            </div>
+            
             <img 
                 src={user.avatar_url} 
                 alt={user.name} 
