@@ -1,6 +1,6 @@
 {
   "name": "clean-zendesk-app-template",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A repository to serve as a template for Zendesk applications",
   "main": "index.js",
   "scripts": {
