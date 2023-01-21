@@ -24,7 +24,7 @@ const GithubUserData: React.FC<Props> = ({ sidebarState }: Props) => {
                 alt={githubUserData.user.name} 
             />
 
-            <div className={Styles.followersWrap}>
+            <div className={Styles.dataWrap}>
                 <span>
                     <GroupAdd />
                     Seguidores:
@@ -37,7 +37,7 @@ const GithubUserData: React.FC<Props> = ({ sidebarState }: Props) => {
                 </span>    
             </div>
 
-            <div className={Styles.followersWrap}>
+            <div className={Styles.dataWrap}>
                 <span>
                     <Badge />
                     Nome: 
