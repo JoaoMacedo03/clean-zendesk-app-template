@@ -11,7 +11,7 @@ type Props = {
 const client = ZAFClient.init()
 
 const GithubUserData: React.FC<Props> = ({ sidebarState }: Props) => {
-    const { githubUserData } = sidebarState
+    const { githubUserData: { user, repositories } } = sidebarState
 
     useEffect(() => {
         client.invoke('resize', { width: '100%', height: 700 });
@@ -20,20 +20,20 @@ const GithubUserData: React.FC<Props> = ({ sidebarState }: Props) => {
     return (
         <div className={Styles.githubUserDataWrap}>
             <img 
-                src={githubUserData.user.avatar_url} 
-                alt={githubUserData.user.name} 
+                src={user.avatar_url} 
+                alt={user.name} 
             />
 
             <div className={Styles.dataWrap}>
                 <span>
                     <GroupAdd />
                     Seguidores:
-                    <b>{githubUserData.user.followers}</b>
+                    <b>{user.followers}</b>
                 </span>
                 <span>
                     <Group />
                     Seguindo:
-                    <b>{githubUserData.user.following}</b>
+                    <b>{user.following}</b>
                 </span>    
             </div>
 
@@ -41,7 +41,7 @@ const GithubUserData: React.FC<Props> = ({ sidebarState }: Props) => {
                 <span>
                     <Badge />
                     Nome: 
-                    <b>{githubUserData.user.name}</b>
+                    <b>{user.name}</b>
                 </span>
             </div>
 
@@ -49,14 +49,14 @@ const GithubUserData: React.FC<Props> = ({ sidebarState }: Props) => {
                 <span>
                     <LocationCity />
                     Cidade:
-                    <b>{githubUserData.user.location}</b>
+                    <b>{user.location}</b>
                 </span>
             </div>
 
             <div className={Styles.divider}/>
 
             <div className={Styles.reposWraps}>
-                {githubUserData.repositories.map(repository => (
+                {repositories.map(repository => (
                     <div key={repository.name}>{repository.name}</div>
                 ))}
             </div>
