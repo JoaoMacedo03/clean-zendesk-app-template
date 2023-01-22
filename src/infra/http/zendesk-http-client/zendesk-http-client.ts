@@ -1,4 +1,5 @@
 import ZAFClient from 'zendesk_app_framework_sdk'
+import i18n from 'i18next'
 import { HttpRequest, HttpResponse, IHttpClient } from '@/data/contracts/http'
 
 export class ZendeskHttpClient implements IHttpClient {
@@ -28,7 +29,7 @@ export class ZendeskHttpClient implements IHttpClient {
               httpCompleteResponse: true
             })
         } catch (error) {
-            zendeskResponse = error.response ? error.response : 'Erro interno servidor'
+            zendeskResponse = error.response ? error.response : i18n.t('infra.http.server-error')
         }
 
         return {

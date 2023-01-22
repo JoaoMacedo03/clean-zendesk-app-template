@@ -1,6 +1,8 @@
+import i18n from 'i18next'
+
 export class GithubUserReposError extends Error {
-    constructor () {
-      super('Não foi possível buscar os dados dos repositórios desse usuário no github')
-      this.name = 'GithubUserReposError'
-    }
+  constructor () {
+    super(i18n.t('domain.errors.github-user-repos-error'))
+    this.name = 'GithubUserReposError'
   }
+}

@@ -1,5 +1,6 @@
-import { HttpRequest, HttpResponse, IHttpClient } from '@/data/contracts/http'
 import axios, { AxiosResponse } from 'axios'
+import i18n from 'i18next'
+import { HttpRequest, HttpResponse, IHttpClient } from '@/data/contracts/http'
 
 export class AxiosHttpClient implements IHttpClient {
   async request (data: HttpRequest): Promise<HttpResponse> {
@@ -13,7 +14,7 @@ export class AxiosHttpClient implements IHttpClient {
         method: data.method
       })
     } catch (error) {
-      axiosResponse = error.response ? error.response : 'Erro interno servidor'
+      axiosResponse = error.response ? error.response : i18n.t('infra.http.server-error')
     }
 
     return {

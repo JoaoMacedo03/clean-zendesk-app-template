@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import ZAFClient from 'zendesk_app_framework_sdk'
 import { Button, CircularProgress, TextField } from '@mui/material'
 import { IGetGithubUser, IGetGithubUserRepos } from '@/domain/use-cases'
@@ -17,6 +18,7 @@ type Props = {
 const client = ZAFClient.init()
 
 const Sidebar: React.FC<Props> = ({ getGithubUser, getGithubUserRepos, validation }: Props) => {
+    const { t } = useTranslation()
     const [loading, setLoading] = useState(false)
     const [state, setState] = useState<SidebarState>({
         githubUser: '',
@@ -82,13 +84,16 @@ const Sidebar: React.FC<Props> = ({ getGithubUser, getGithubUserRepos, validatio
             <TextField
                 variant="outlined"
                 name="githubuser"
-                label="Informe o nome do usuário GitHub"
+                label={t('presentation.pages.sidebar.label')}
                 fullWidth
                 onChange={handleChange}
             />
             {state.error && <ErrorMessage error={state.error} />}
             <Button type="submit" variant="contained">
-                {loading ? <CircularProgress size={30} /> : <>Buscar</> }
+                {loading ? 
+                    <CircularProgress size={30} /> : 
+                    <>{t('presentation.pages.sidebar.button')}</> 
+                }
             </Button>
         </form>
     )
